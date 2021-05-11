@@ -7,12 +7,9 @@ async function init(db) {
         let contactsFile = fs.readFileSync(path.resolve(__dirname, 'contacts.json'));
         if (contactsFile) {
             let contacts = JSON.parse(contactsFile);
-            if (contacts && contacts.results) {
-                contacts = contacts.results;
-            } else {
-                contacts = [];
+            if (contacts && contacts.results && contacts.results.length > 0) {
+                await ContactsController.loadContacts(contacts.results);
             }
-            await ContactsController.loadContacts(contacts);
         } else {
             throw "there was a problem loading the contacts from json file"
         }
