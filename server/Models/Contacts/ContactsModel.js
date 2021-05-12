@@ -25,7 +25,6 @@ class ContactsModel {
             let query = [];
             if (name) {
                 name = decodeURI(name)
-                console.log(name);
                 query.push(
                     {
                         $project: {
