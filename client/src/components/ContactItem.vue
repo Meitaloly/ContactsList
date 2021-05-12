@@ -18,9 +18,8 @@
             </div>
         </div>
         <contact-extra-details
-                @deleteBtnClicked="showConfirmMsg()"
+                @deleteBtnClicked="handelDeleteClicked()"
                 v-if="contactClicked" :contact="contact"></contact-extra-details>
-        <vue-confirm-dialog/>
     </div>
 </template>
 
@@ -42,26 +41,8 @@
             handleContactClicked() {
                 this.contactClicked = !this.contactClicked;
             },
-            showConfirmMsg() {
-                this.$confirm(
-                    {
-                        message: `You are about to delete ${this.contact.name.first} ${this.contact.name.last}! \n Are you sure you want to do that?`,
-                        button: {
-                            no: 'No',
-                            yes: 'Yes'
-                        },
-                        /**
-                         * Callback Function
-                         * @param {Boolean} confirm
-                         */
-                        callback: confirm => {
-                            if (confirm) {
-                                this.$emit('deleteContact', this.contact._id);
-                                this.$confirm.close();
-                            }
-                        }
-                    }
-                )
+            handelDeleteClicked() {
+                this.$emit('deleteBtnClicked');
             }
         }
     }
@@ -79,6 +60,7 @@
     }
 
     .itemContainer {
+        cursor: pointer;
         position: relative;
         font-size: 18px;
         display: flex;

@@ -25,6 +25,5 @@ app.use(async function (req, res, next) {
     next();
 });
 
-// require('./tools/loadContactsFromJSON')(db)
-
+require('./tools/loadContactsFromJSON')(db)
 app.use('/api/Contacts', require('./Routes/ContactsRouter')(db));

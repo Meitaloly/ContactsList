@@ -19,6 +19,8 @@
 
 <style>
     #appContainer {
+        max-width: 600px;
+        min-width: 400px;
         background-color: #d8e8fa;
         min-width: 300px;
         margin: auto;
